@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auth-System</title>
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+  <div class="form-container">
+    <h1 >Sign Up</h1>
+    <form id="register-form">
+      <div class="input-group">
+      <label for="name">Enter Your Name:</label>
+      <input type="text" name="name" id="name" >
+      </div>
+
+      <div class="input-group">
+      <label for="email">Enter Your Email:</label>
+      <input type="email" name="email" id="email" >
+      </div>
+
+      <div class="input-group">
+       <label for="password">Enter Your Password:</label>
+      <input type="password" name="password" id="password" >
+        </div>
+      
+       <div class="input-group"> 
+      <label for="admincode">Enter Your Admin Code :</label>
+      <input type="text" name="admincode" id="admincode" >
+      </div>
+
+      <button type="submit" class="btn">Register</button>
+
+      <p class="switch-login">Already have an account? <a id="link" href="login.html">Login Account</a></p>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("register-form").addEventListener("submit",async function(event) {
+      event.preventDefault();
+
+      const name=document.getElementById("name").value;
+      const email=document.getElementById("email").value;
+      const password=document.getElementById("password").value;
+      const admincode=document.getElementById("admincode").value;
+
+      try{
+        const res=await fetch("http://localhost:5007/api/auth/register",{
+          method:"POST",
+          headers:{"Content-Type":"application/json"},
+          body: JSON.stringify({name,email,password,admincode})
+        });
+        const data=await res.json();
+
+        if(res.ok){
+          alert("✅ Registration successful!");
+          window.location.href="login.html";
+        }
+        else{
+          alert("❌ Error: " + data.message || "Something went wrong");
+        }
+      }
+      catch(error){
+         alert("⚠️ Network error: " + error.message);
+      }
+      
+    });
+  </script>
+</body>
+</html>

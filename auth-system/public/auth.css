@@ -1,0 +1,98 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+body{
+background: linear-gradient(135deg, green, blue);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form-container{
+  background-color: white;
+  color:green ;
+  padding: 25px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 15px ;
+  width: 90%;
+  max-width: 450px;
+  text-align: center;
+  animation: fadeIn 0.4s ease-in-out;
+}
+.form-container h1{
+   margin-bottom: 20px;
+  }
+
+.input-group{
+  text-align: left;
+  margin-bottom: 30px;
+}
+.input-group label{
+  font-size: 15px;
+  font-weight: bold;
+  color:green;
+}
+
+.input-group input{
+  width: 100%;
+  margin-top: 5px;
+  padding: 10px;
+  border: 2px solid #ccc;
+  font-size: 14px;
+  border-radius: 8px;
+}
+
+.input-group input:focus{
+  box-shadow: 0 0 5px green;
+  border-color: green;
+  outline: none;
+}
+
+
+.btn {
+  background-color: lightseagreen;
+  width: 35%;
+  padding: 12px;
+  border: none;
+  font-family:'Times New Roman', Times, serif;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out; /* Smooth transition */
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+}
+
+/* Hover Effect */
+.btn:hover {
+  background-color: #0077ff; /* Better blue shade */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Optional: Add click effect */
+.btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Start invisible */
+    transform: translateY(-10px); /* Slight slide effect */
+  }
+  to {
+    opacity: 1; /* Fully visible */
+    transform: translateY(0);
+  }
+}
+
+#link{
+  text-decoration: none;
+  color:blue;
+}

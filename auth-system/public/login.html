@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+  <div class="form-container">
+    <h1 style="margin-bottom: 30px;">Login</h1>
+
+    <!-- FORM START -->
+    <form id="loginForm">
+      <div class="input-group">
+        <label for="email">Enter Your Email:</label>
+        <input type="email" name="email" id="email" required>
+      </div>
+
+      <div class="input-group">
+        <label for="password">Enter Your Password:</label>
+        <input type="password" name="password" id="password" required>
+      </div>
+
+      <button type="submit" class="btn">Login</button>
+
+      <p class="switch-login">
+        New User? <a id="link" href="register.html">Register Yourself</a>
+      </p>
+    </form>
+    <!-- FORM END -->
+  </div>
+
+<script>
+  const apiBase = "http://localhost:5007/api/auth";
+
+  const form = document.getElementById("loginForm");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    if (!email || !password) {
+      alert("Please enter both email and password");
+      return;
+    }
+
+    try {
+      const response = await fetch(`${apiBase}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert(data.message || "Invalid email or password");
+        return;
+      }
+
+      // ✅ Save token to localStorage
+      localStorage.setItem("accessToken", data.accessToken);
+
+      // ✅ Redirect to profile page
+      window.location.href = "profile.html";
+    } catch (error) {
+      console.error("Login error:", error);
+      alert("Something went wrong. Please try again.");
+    }
+  });
+</script>
+
+
+</body>
+</html>
+
+
